@@ -4,6 +4,7 @@ import { useThemeStore } from './stores/themeStore'
 import { useCounterStore } from './stores/counterStore'
 import { ref, watch } from 'vue'
 
+
 const CounterStore = useCounterStore()
 const themeStore = useThemeStore()
 const studentStore = useStudentStore()
@@ -45,6 +46,7 @@ waitUntilCountIsTen()
 
 <template>
   <div :class="['container', themeStore.isDark ? 'dark' : 'light']">
+
     <div class="card">
       <div class="header">
         <img
@@ -80,6 +82,7 @@ waitUntilCountIsTen()
       <p class="average">
         📈 <strong>Rata-rata:</strong> {{ studentStore.getAverage }}
       </p>
+      <p>🏆 Nilai tinggi (≥90): {{ studentStore.countHighScores }}</p>
 
       <button class="theme-btn" @click="themeStore.toggleTheme()">
         {{ themeStore.isDark ? '🌙 Dark Mode' : '☀️ Light Mode' }}
