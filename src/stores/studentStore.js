@@ -14,8 +14,18 @@ export const useStudentStore = defineStore('student', {
         getAverage: (state) => {
             const allScores = state.students.flatMap(s => s.scores)
             const total = allScores.reduce((sum, n) => sum + n, 0)
-            return (total / allScores.length).toFixed(2)
+            const avg = total / allScores.length
+            return avg.toFixed(2)
+        },
+        countHighScores: (state) => {
+            // gabungkan semua nilai siswa jadi satu array
+            const allScores = state.students.flatMap(s => s.scores)
+            // filter nilai yang >= 90
+            const highScores = allScores.filter(n => n >= 90)
+            // hitung berapa banyak
+            return highScores.length
         }
+        ,
     },
     actions: {
 
@@ -33,7 +43,7 @@ export const useStudentStore = defineStore('student', {
         addStudent(newStudent) {
             this.students.push(newStudent)
         },
-       
+
         resetStudents() {
             this.students = []
         }
